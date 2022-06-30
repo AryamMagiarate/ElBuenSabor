@@ -1,3 +1,7 @@
-export class Usuario{
-    
+
+
+export interface Usuario{
+    id?:string;
+    email?:string;
+
 }

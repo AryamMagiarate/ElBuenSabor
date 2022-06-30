@@ -13,6 +13,13 @@ import { CabeceroComponent } from './cabecero/cabecero.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
+import { environment } from 'src/environments/environment';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import {AngularFirestoreModule, SETTINGS} from '@angular/fire/compat/firestore';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,7 +39,12 @@ import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,    
+    FormsModule,
+    FlashMessagesModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firestore,'ElBuenSabor'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
