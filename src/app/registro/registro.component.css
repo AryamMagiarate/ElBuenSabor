@@ -1,0 +1,28 @@
+.btn-google{
+    background-color:#ef3620 ;
+    color:whitesmoke;
+ 
+}
+.main-header{
+    background-color: #0c4c76;
+    border: none;
+    color:azure;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin:0;
+}
+.card-body{
+    background-color: #0c4c76;
+    border-radius: 15px;
+}
+.container-fluid{
+    background-image: linear-gradient(45deg,#0c4c76,white,#0c4c76);
+}
+.label{
+    background-color: #0c4c76;
+    border: none;
+    color:azure;
+    justify-content: center;
+    text-align: center;
+}
