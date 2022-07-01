@@ -1,0 +1,20 @@
+.container-fluid{
+    background-image: linear-gradient(45deg,#ef3620,white,#ef3620);
+}
+.main-header{
+    background-color:#ef3620 ;
+    color:whitesmoke;
+    margin: 0;
+    padding:0;
+ 
+
+  
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.btn-google{
+    background-color:#ef3620 ;
+    color:whitesmoke;
+ 
+}

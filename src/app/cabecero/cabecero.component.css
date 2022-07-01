@@ -2,3 +2,21 @@
 .navbar{
     background:#be1704;
 }
+.titulo{
+    font-family: 'Segoe UI';
+}
+.leyenda{
+    font-style: italic;
+    color: #f7be53b6;
+}
+img{
+    max-width: 300px;
+}
+.navbar-toggler{
+    padding: 5px;
+    margin-right: 10px;
+}
+#navbarCollapse{ 
+
+  justify-content: flex-end;
+}

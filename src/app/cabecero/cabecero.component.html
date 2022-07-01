@@ -1,42 +1,43 @@
-<nav class="navbar navbar-expand-sm navbar-dark  p-o">
-  <div class="container">
-
-    <a routerLink="/" class="navbar-brand"><h1 class="text-center">El Buen Sabor</h1></a>
+<nav class="navbar navbar-expand-sm navbar-dark"> 
+    <a routerLink="/" class="navbar-brand p-0">
+      <img src="assets/img/delivery4.png" class="img-fluid" alt=""> 
+   </a>
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
-  </div>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav m-1 p-1">
-        <li class="nav-item px-2 m-1 p-2">
-          <a routerLink="/" class="nav-link text-center  border border-light rounded-3">Inicio</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto m-1 p-2">
-        <li class="nav-item dropdown mr-3 text-center m-1 p-2">
-          <a href="#" class="nav-link dropdown-toggle p-1 m-1 text-center" data-bs-toggle="dropdown">
-            <i class="fas fa-user"></i><br> Bienvenido
+  
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav m-1 p-1">
+      <li class="nav-item px-2 m-1 p-2">
+        <a routerLink="/" class="nav-link text-center"><i class="fa-solid fa-house"></i><br> Inicio</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto m-1 p-2">
+      <li *ngIf="isLoggedIn" class="nav-item dropdown mr-3 text-center m-1 p-2">
+        <a href="#" class="nav-link dropdown-toggle p-1 m-1 text-center" data-bs-toggle="dropdown">
+          <i class="fas fa-user"></i><br> Bienvenido <br>{{loggedInUser}}
+        </a>
+        <div class="dropdown-menu ">
+          <a routerLink="/usuario" class="dropdown-item bg-white">
+            <i class="fas fa-cog"></i> Mis cosas
           </a>
-          <div class="dropdown-menu ">
-            <a routerLink="/usuario" class="dropdown-item bg-white">
-              <i class="fas fa-cog"></i> Mis cosas
-            </a>
-          </div>
-        </li>
-        <li class="nav-item m-1 p-2">
-          <a routerLink="/login" class="nav-link text-center"><i class="fas fa-user"></i><br> Login</a>
+        </div>
+      </li>
+      <li *ngIf="!isLoggedIn" class="nav-item m-1 p-2">
+        <a routerLink="/login" class="nav-link text-center"><i class="fas fa-user"></i><br> Login</a>
 
-        </li>
-        <li class="nav-item text-center m-1 p-2 ">
-          <a style="cursor:pointer" class="nav-link text-center"><i class="fas fa-user-times"></i><br> Salir</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item text-center m-1 p-2 ">
+        <a style="cursor:pointer" class="nav-link text-center" (click)="logout()"><i class="fas fa-user-times"></i><br>
+          Salir</a>
 
-        </li>
-        <li class="nav-item text-center m-1 p-2 ">
-          <a routerLink="/registro" class="nav-link text-center"><i class="fa-solid fa-user-plus"></i><br>
-            Registrarse</a>
+      </li>
+      <li *ngIf="!isLoggedIn" class="nav-item text-center m-1 p-2 ">
+        <a routerLink="/registro" class="nav-link text-center"><i class="fa-solid fa-user-plus"></i><br>
+          Registrarse</a>
 
-        </li>
-      </ul>
-    </div>
- 
+      </li>
+    </ul>
+  </div>
+
 </nav>

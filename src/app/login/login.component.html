@@ -1,1 +1,51 @@
-<p>login works!</p>
+<header class="main-header mt-1">
+    <div class="container cabecero">
+      <div class="row text-center justify-content-center">
+        <div class="col-md-6 p-2">
+          <h1 > <i class="fas fa-user"> </i> Login</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <flash-messages></flash-messages>
+  <section id="login" class="m-1">
+    <div class="container-fluid">
+      <div class="col-md-6 mx-auto">
+        <div class="row">
+          <div class="card-header m-0 p-0">
+          
+          </div>
+          <div class="card-body bg-warning">
+              <form (submit)="login()">
+                  <div class="form-group">
+                     <label for="email" class="form-control bg-warning text-center">Email</label>
+                     <input type="text" class="form-control" name="email" id="email" [(ngModel)]="email">
+                  </div>
+                  <div class="form-group">
+                      <label for="password" class="form-control bg-warning text-center">Password</label>
+                      <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password">
+                   </div>
+                   <div class="row text-center my-2">
+                     <div class="col-3"></div>
+                     <div class="col-6"> 
+                      <input type="submit" value="Login" class="btn btn-primary btn-block">
+                     </div>
+                     <div class="col-3"></div>
+                   </div>
+                   <div class="form-group">
+                    <div class="row text-center my-2">
+                      <div class="col-2"></div>
+                      <div class="col-8"> 
+                       <button type="submit"  class="btn btn-google btn-block" (click)="loginWithGoogle()"><img src="assets/img/google.png" class="img-fluid" alt=""> Login with Google</button>
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
+                   
+                   </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
