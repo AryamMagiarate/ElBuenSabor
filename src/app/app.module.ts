@@ -21,6 +21,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './servicios/login.service';
+import { UsuarioService } from './servicios/usuario.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { LoginService } from './servicios/login.service';
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
-  providers: [LoginService],
+  providers: [LoginService,UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

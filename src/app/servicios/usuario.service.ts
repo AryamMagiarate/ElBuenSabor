@@ -25,8 +25,11 @@ getUsuarios():Observable<Usuario>{
     );
     return this.usuarios as any;
 }
-agregarUsuario(usuario:Usuario) {
-    this.usuariosCollection?.add(usuario);
+agregarUsuario(usuario:Usuario) {    
+ 
+    this.usuariosCollection?.doc(usuario.id).set({...usuario});   
+    
+    console.log("usuario Creado");
 }
 
 getUsuario(id:string) {
@@ -37,7 +40,7 @@ return this.usuario = this.usuarioDoc?.snapshotChanges().pipe(
         map(accion => {
             
             if (accion.payload.exists === false) {
-                console.log("el payload no existe")
+                console.log("el payload no existe");
                 return null;
             } else {
                 const datos = accion.payload.data() as Usuario;
@@ -52,11 +55,12 @@ return this.usuario = this.usuarioDoc?.snapshotChanges().pipe(
    
     
 }
+
 modificar(usuario:Usuario){
     this.usuarioDoc=this.db.doc(`usuarios/${usuario.id}`);
     this.usuarioDoc.update(usuario);
 }
-eliminarCliente(usuario:Usuario){
+eliminarUsuario(usuario:Usuario){
     this.usuarioDoc=this.db.doc(`clientes/${usuario.id}`); //recuperamos los datos del usuario segun su id
     this.usuarioDoc.delete();
 }

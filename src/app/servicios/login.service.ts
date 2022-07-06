@@ -3,10 +3,12 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 import {map} from 'rxjs/operators'
+import { UsuarioService } from './usuario.service';
+import { Usuario } from '../modelos/usuario.model';
 @Injectable()
 export class LoginService{
     googleProvider = new GoogleAuthProvider();
-    constructor(private authService:AngularFireAuth){
+    constructor(private authService:AngularFireAuth,private usuarioService:UsuarioService){
     }
 login(email:string, password:string){
 return new Promise((resolve, reject)=>{
@@ -31,9 +33,11 @@ registrar(email:string,password:string){
 
 }
 loginWithGoogle(){
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject)=>{      
         this.authService.signInWithPopup(this.googleProvider)
-        .then(datos=>resolve(datos),
+        .then(datos=>
+           
+            resolve(datos),
         error=> reject(error))
     })
 }
