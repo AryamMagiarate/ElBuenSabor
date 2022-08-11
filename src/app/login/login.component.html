@@ -7,7 +7,7 @@
       </div>
     </div>
   </header>
-  <flash-messages></flash-messages>
+  <flash-messages class="text-center"></flash-messages>
   <section id="login" class="m-1">
     <div class="container-fluid">
       <div class="col-md-6 mx-auto">
@@ -19,11 +19,11 @@
               <form (submit)="login()">
                   <div class="form-group">
                      <label for="email" class="form-control label text-center">Email</label>
-                     <input type="text" class="form-control" name="email" id="email" [(ngModel)]="email">
+                     <input type="email" class="form-control" name="email" id="email" [(ngModel)]="email" #emailL="ngModel">
                   </div>
                   <div class="form-group">
                       <label for="password" class="form-control label  text-center">Password</label>
-                      <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password">
+                      <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" #passwordL="ngModel">
                    </div>
                    <div class="row text-center my-2">
                      <div class="col-3"></div>
