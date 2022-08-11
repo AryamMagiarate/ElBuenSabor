@@ -40,7 +40,7 @@ return this.usuario = this.usuarioDoc?.snapshotChanges().pipe(
         map(accion => {
             
             if (accion.payload.exists === false) {
-                console.log("el payload no existe");
+                console.log("el payload no existe, el usuario no existe en tabla usuarios");
                 return null;
             } else {
                 const datos = accion.payload.data() as Usuario;
@@ -55,6 +55,7 @@ return this.usuario = this.usuarioDoc?.snapshotChanges().pipe(
    
     
 }
+
 
 modificar(usuario:Usuario){
     this.usuarioDoc=this.db.doc(`usuarios/${usuario.id}`);

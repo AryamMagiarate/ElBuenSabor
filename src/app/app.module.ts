@@ -22,6 +22,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './servicios/login.service';
 import { UsuarioService } from './servicios/usuario.service';
+import { EnvioEmailConfirmacionComponent } from './envio-email-confirmacion/envio-email-confirmacion.component';
+import { AdministradorComponent } from './administrador/administrador.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { UsuarioService } from './servicios/usuario.service';
     HomeComponent,
     FooterComponent,
     NoEncontradoComponent,
+    EnvioEmailConfirmacionComponent,
+    AdministradorComponent,
    
   ],
   imports: [

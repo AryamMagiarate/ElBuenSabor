@@ -17,11 +17,12 @@ export class CabeceroComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.getAuth().subscribe(auth=>{
-      if(auth){
+      if(auth?.emailVerified){
         this.isLoggedIn=true;
         this.loggedInUser=auth.email!;
       }else{
         this.isLoggedIn=false;
+        this.loggedInUser="";
       }
     });
    

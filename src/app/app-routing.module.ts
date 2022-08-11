@@ -6,6 +6,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { NoEncontradoComponent } from './no-encontrado/no-encontrado.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AppComponent } from './app.component';
+import { EnvioEmailConfirmacionComponent } from './envio-email-confirmacion/envio-email-confirmacion.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'registro',component:RegistroComponent},
   {path:'usuario',component:UsuarioComponent},
+  {path:'confirmacionRegistro',component:EnvioEmailConfirmacionComponent},
   {path:'**',component:NoEncontradoComponent} //Este componente siempre sera el ultimo
  
 ];
