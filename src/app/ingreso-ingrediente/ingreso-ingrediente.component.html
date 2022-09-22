@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="row justify-content-center m-2 p-1">
+    <h2 class="text-center p-2">Ingreso de Ingredientes</h2>
+    <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3 col-xxl-3"></div>
+
+    <form action="" class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-6 border border-warning p-2">
+
+      <div class="row justify-content-center mb-1 pb-1">
+        <div class="col-6 p-1">
+          <label for="ingrediente" class="p-1">Ingrediente: </label>
+        </div>
+        <div class="col-6">
+          <select name="ingredientes" id="ingredientes" class="p-2 text-center" [(ngModel)]="ingrediente">
+            <option class=" p-2" *ngFor="let ingred of listaDeIngredientes" [ngValue]="ingred">{{ingred.nombre}}
+            </option>
+          </select>
+        </div>
+
+      </div>
+      <div class="row justify-content-center  mb-1 pb-1">
+        <div class="col-6 p-1">
+          <label class="p-1" for="cantidadI">Cantidad</label>
+        </div>
+        <div class="col-6">
+          <input class="p-2" type="number" id="cantidadI" name="cantidadI" [(ngModel)]="cantidadIngreso">
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class="row justify-content-center  mb-1 pb-1">
+        <div class="col-6 p-1">
+          <label class="p-1" for="costo">Costo:</label>
+        </div>
+        <div class="col-6">
+          <input class="p-2" type="number" id="costo" name="costo" [(ngModel)]="costo">
+        </div>
+      </div>
+      <div class="row justify-content-center  mb-2 pb-1">
+        <div class="col-6 p-1"><label class="p-1" for="nroCompra">Nro Compra:</label>
+        </div>
+        <div class="col-6">
+          <input class="p-2" type="text" id="nroCompra" name="nroCompra" [(ngModel)]="nroCompra">
+        </div>
+      </div>
+
+
+
+
+
+      <div class="row justify-content-center  mb-1 pb-1">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <div class="row justify-content-center">
+            <button type="submit" (click)="crearIngreso()" class="border border-warning bg-warning rounded-3">Crear
+              Ingreso</button>
+          </div>
+
+        </div>
+        <div class="col-3"></div>
+      </div>
+
+
+    </form>
+
+    <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3 col-xxl-3"></div>
+  </div>
+  <div class="row justify-content-center p-3 m-2">
+    <flash-messages></flash-messages>
+  </div>
+  
+
+</div>

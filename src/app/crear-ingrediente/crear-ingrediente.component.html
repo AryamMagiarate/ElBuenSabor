@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class=" row justify-content-center">
+
+    <h2 class=" row  justify-content-center">Cargar Ingrediente</h2>
+
+
+    <form action="" class="col-12 col-sm-10 col-md-9 col-lg-6 col-xl-6 col-xxl-6">
+      <div class=" row justify-content-center">
+        <div class="col-4 p-1 justify-content-center"><label for="idIngrediente">idIngrediente</label></div>
+        <div class="col-8 p-1 justify-content-center"><input type="text" name="idIngrediente" id="idIngrediente"
+            [(ngModel)]="idIngrediente"></div>
+      </div>
+      <div class=" row justify-content-center">
+        <div class="col-4 p-1 justify-content-center"><label for="nombre">Denominacion</label></div>
+        <div class="col-8 p-1 justify-content-center"><input type="text" name="nombre" id="nombre" [(ngModel)]="nombre">
+        </div>
+      </div>
+      <div class=" row justify-content-center">
+        <div class="col-4 p-1 justify-content-center"><label for="umedida">Unidad Medida</label></div>
+        <div class="col-8 p-1 justify-content-center">
+          <div class="row justify-content-center">
+           
+            <div class="col-2"><input type="radio" name="umedida" id="umedida" value="g" [(ngModel)]="umedida"></div>
+            <div class="col-9">gramos</div>
+          </div>
+          <div class="row justify-content-center">
+            
+            <div class="col-2"><input type="radio" name="umedida" id="umedida" value="ml" [(ngModel)]="umedida"></div>
+            <div class="col-9">cm3</div>
+          </div>
+          <div class="row justify-content-center">
+            
+            <div class="col-2"><input type="radio" name="umedida" id="umedida" value="unid" [(ngModel)]="umedida"></div>
+              <div class="col-9">unidad</div>
+          </div>
+        </div>
+      </div>
+      <div class=" row justify-content-center">
+        <div class="col-4"></div>
+        <div class="col-4"> <input type="submit" value="Cargar Ingrediente" (click)="cargarIngrediente()"></div>
+        <div class="col-4"></div>
+      </div>
+
+    </form>
+
+    <flash-messages class="row m-1 p-2 text-center"></flash-messages>
+  </div>
+
+</div>

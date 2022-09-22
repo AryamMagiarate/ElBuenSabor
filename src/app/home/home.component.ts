@@ -3,6 +3,8 @@ import { LoginService } from '../servicios/login.service';
 import { Usuario } from '../modelos/usuario.model';
 import { UsuarioService } from '../servicios/usuario.service';
 import { reload } from 'firebase/auth';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -12,38 +14,41 @@ import { reload } from 'firebase/auth';
 export class HomeComponent implements OnInit { 
   isLoggedIn!:boolean;
   loggedInUser!:string;
-  usuario!:Usuario;
-  constructor(private loginService:LoginService, private usuarioService:UsuarioService) { }
+  usuario!:any;
+  constructor(private loginService:LoginService, private usuarioService:UsuarioService, private router:Router) { }
 
   ngOnInit(): void {
-    
-    this.loginService.getAuth().subscribe(user=>{
-    this.usuarioService.getUsuario(user?.email!).subscribe(usuario=>this.usuario=usuario);
-    console.log("El usuario de la bd es: "+this.usuario);
-      if(user?.emailVerified){
-        this.isLoggedIn=true;      
-        this.loggedInUser=user.email!;
-        console.log("HOme autenticado");
-        if(this.usuario===undefined){
-          let us=new Usuario(user.email!,user.email!);
-          us.setVerificado=true;
-          this.usuarioService.agregarUsuario(us);
-         
-        }
-       
-      }else{
-        this.isLoggedIn=false;
-        
-        this.loggedInUser="";
-        console.log("HOme sin autenticar")
-       
-      }
+   let cosa;
+    this.loginService.getAuth().subscribe(userAuth=>{
+ this.usuarioService.getUsuario(userAuth?.email!).subscribe(user=>{
+  let usu:Usuario;
+  usu=user;
+  console.log(usu.rol); 
+  if(usu.rol==="cliente"){
+    this.isLoggedIn=true;
+    this.loggedInUser=usu.email!;
+  }else if(usu.rol==="cocinero"){
+   this.router.navigate(['cocinero'])
+  }else if(usu.rol==="cajero"){
+    this.router.navigate(['cajero']) 
+ 
+  }else if(usu.rol==="admin"){
+    this.router.navigate(['administrador'])
+  }else{
+    this.router.navigate(['**'])
+  }
+ }
+  );
+
+
+   
     });
+ 
    
   }
 
-  
- 
-  
+  addProducto(idProducto:string){
+    
+  }
 
 }

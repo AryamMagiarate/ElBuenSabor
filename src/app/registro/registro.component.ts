@@ -4,7 +4,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { LoginService } from 'src/app/servicios/login.service';
 import { Usuario } from '../modelos/usuario.model';
 import { UsuarioService } from '../servicios/usuario.service';
-import { sendEmailVerification } from 'firebase/auth';
+import { GoogleAuthProvider, sendEmailVerification, reload } from 'firebase/auth';
 import { EnvioEmailConfirmacionComponent } from '../envio-email-confirmacion/envio-email-confirmacion.component';
 import { NgForm } from '@angular/forms';
 
@@ -14,51 +14,45 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  email: string="";
-  password: string="";
+  googleProvider = new GoogleAuthProvider();
+  email: string = "";
+  password: string = "";
   id!: string;
-  usuario!: Usuario;
+  usuario!: any;
   usuarioVal!: Usuario;
   constructor(private flashMessages: FlashMessagesService, private router: Router, private loginService: LoginService, private usuarioService: UsuarioService) { }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void {/**Lo que este aca dentro se inicializara de inmediato */
   }
-  registrar() {
-    if (this.email.length == 0) {
-      this.flashMessages.show("El campo Email debe estar completo!", { cssClass: 'alert-danger', timeout: 10000 });
-    }
-    if (this.password.length == 0 || this.password.length <= 6) {
-      this.flashMessages.show("El campo contraseña debe estar completo, y tener 6 caracteres como minimo", { cssClass: 'alert-danger', timeout: 10000 });
-    }
-    if (this.usuarioService.getUsuario(this.email).subscribe(
-      user => {
-        this.usuarioVal = user;
-        if (this.usuarioVal.email === this.email) {
-          return true
-        }else{return false}
-      })){
-      this.flashMessages.show("El email ingresado ya se encuentra registrado!", { cssClass: 'alert-danger', timeout: 10000 });
-      }
-    this.loginService.registrar(this.email, this.password).then(
-      res => {
+ 
+ 
+ limpiarCampos(){
+  this.email="";
+  this.password="";
+ }
 
-        this.router.navigate(['confirmacionRegistro']);
-      }
-    ).catch(error => {
-      this.flashMessages.show("Error de Registro", { cssClass: 'alert-danger', timeout: 10000 });
-    })
+ 
+ registrar(){//solo registra en tabla de autenticados
+ if(this.email.length>10 && this.password.length>=8){
+  this.loginService.registrarEnTablaAutenticados(this.email,this.password)
+  
+  
+    this.router.navigate(['confirmacionRegistro']);    
+ }else if(this.email.length<=10){
+  this.flashMessages.show("El campo 'Email' debe estar completo", { cssClass: 'alert-danger', timeout: 5000 })
+ }else if(this.password.length<8){
+  this.flashMessages.show("El campo 'Password' debe estar completo y tener 8 o mas caracteres", { cssClass: 'alert-danger', timeout: 5000 })
+ }
 
-  }
-  registrarConGoogle() {//El login con google asi como el registro con google ya autentica y verifica el email, por consiguiente creara al usuario
-    //es lo mismo que login
-    this.loginService.loginWithGoogle().then(res => {
 
-      this.router.navigate(['confirmacionRegistro']);
-    })
-      .catch(error => {
-        this.flashMessages.show(error.message, { cssClass: 'alert-danger', timeout: 4000 })
-      })
-  }
+
+ 
+ 
+ 
+}
+registrarConGoogle(){
+this.loginService.registroConGoogle();
+this.router.navigate(['confirmacionRegistro']);
+}
 
 }

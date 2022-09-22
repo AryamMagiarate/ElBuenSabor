@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { LoginService } from '../servicios/login.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { UsuarioService } from '../servicios/usuario.service';
+import { Usuario } from '../modelos/usuario.model';
 
 @Component({
   selector: 'app-envio-email-confirmacion',
@@ -10,14 +12,16 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class EnvioEmailConfirmacionComponent implements OnInit {
   email!:string;
-  constructor(private loginService:LoginService) { }
+  constructor(private loginService:LoginService,private userService:UsuarioService) { }
 
   ngOnInit(): void {
     this.loginService.getAuth().subscribe(auth => {
       if (auth) {
-        console.log("La autenticacion de Email es: "+auth.emailVerified);
+       
         this.email = auth.email!;
-      }});
+      }
+      
+    });
   }
 
 }

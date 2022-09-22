@@ -32,45 +32,44 @@ export class LoginComponent implements OnInit {
     if (this.email.length == 0) {
       this.flashMessages.show("El campo Email debe estar completo!", { cssClass: 'alert-danger', timeout: 6000 });
     }
-    if (this.password.length == 0 || this.password.length <= 6) {
+    if (this.password.length == 0 || this.password.length < 8) {
       this.flashMessages.show("El campo contraseña debe estar completo, y tener 6 caracteres como minimo", { cssClass: 'alert-danger', timeout: 6000 });
     }
-    else{
+    if(this.email.length>10&&this.password.length>=8){
     this.loginService.login(this.email, this.password).then(res => {
-    
-      this.loginService.authService.onAuthStateChanged(auth => {
-        if (auth?.emailVerified) {
-          this.router.navigate(['']);
-        } else {
-          auth?.sendEmailVerification();
-          this.router.navigate(['confirmacionRegistro']);
-        }
-        });
-     
+      
+    this.router.navigate(['']);
+      
     
     })
       .catch(error => {
         
       this.flashMessages.show("El usuario no se encuentra registrado o la contraseña es incorrecta<br>Si Usted no se registro, ingrese a ''Registrarse''", { cssClass: 'alert-danger', timeout: 7000 });
-
+      this.email="";
+      this.password=""; 
       })
     }
   }
 loginWithGoogle() {
+ 
   this.loginService.loginWithGoogle().then(res => {
-    if (this.loginService.emailVerificado()!) {//si el email esta verificado entonces ingresa al home
-      this.router.navigate(['']);
-    } else {//si el email no esta verificado entonces envia un email de verficacion
-      this.loginService.enviarEmailDeVerificacion();
-      this.router.navigate(['confirmacionRegistro']);
-      //this.flashMessages.show("Debe verificar su direccion de Email, visitando el link que se le envio a la misma!", { cssClass: 'alert-danger', timeout: 8000 });
-
+    console.log("Loggin with google resulto: "+res)
+    if(res){
+      this.router.navigate(['']); //  
+       
+    }else{
+      
+      this.router.navigate(['registro']); 
     }
+    
+      }
+     
+  
 
-  })
+  )
     .catch(error => {
-      this.flashMessages.show("La direccion de Email no se encuentra registrada", { cssClass: 'alert-danger', timeout: 4000 });
-   
+      
+     
     })
 
 }
